@@ -1,3 +1,4 @@
+// ? https://tailwindcss.com/docs/configuration for more information
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
@@ -6,7 +7,15 @@ module.exports = {
         "./app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                primary: "#ffbe33",
+                secondray: "#222831"
+            },
+            fontFamily:{
+                dancing: ["Dancing Script", "cursive"]
+            },
+        },
     },
     plugins: [],
 };
