@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+    @apply font-sans p-0 m-0;
+}
+
+* {
+    @apply box-border;
+}
+
+.btn {
+    @apply bg-primary rounded-3xl px-[25px] py-[8px] cursor-pointer hover:opacity-70 transition-all
+}
