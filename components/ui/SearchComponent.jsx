@@ -17,7 +17,7 @@ const SearchComponent = ({ setIsSearchModal }) => {
                 }}
             >
                 <div className="relative z-50 w-full h-full text-black">
-                    <div className="w-[500px] h-[500px] border-2 p-4">
+                    <div className="w-[375px] p-5 md:w-[450px] md:p-10  border-2 rounded-3xl">
                         <GiCancel
                         size={25}
                         className="absolute right-4 top-4  cursor-pointer hover:opacity-60"

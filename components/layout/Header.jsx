@@ -1,37 +1,47 @@
 import React, { useState } from "react";
 import { FaSearch, FaShoppingCart, FaUserAlt } from "react-icons/fa";
+import { GiCancel, GiHamburgerMenu } from "react-icons/gi";
 import Logo from "../ui/Logo";
 import SearchComponent from "../ui/SearchComponent";
 
 const Header = () => {
     const [isSearchModal, setIsSearchModal] = useState(false);
+    const [isMenuModal, setIsMenuModal] = useState(false);
+
+    console.log(!isMenuModal && "!grid place-content-center");
 
     return (
         <div className="h-[5.5rem] bg-secondray text-white">
-            <div className="container  flex items-center justify-between mx-auto h-full ">
+            <div className="sm:container max-sm:mx-4 flex items-center justify-between mx-auto h-full">
                 <div>
                     <Logo />
                 </div>
                 {/** //! Seo için nav yapıldı  */}
-                <nav className="flex list-none gap-x-2">
-                    <li className="px-[5px] py-[14px] hover:text-primary cursor-pointer">
-                        <a href="">HOME</a>
-                    </li>
-                    <li className="px-[5px] py-[14px] hover:text-primary cursor-pointer">
-                        <a href="">MENU</a>
-                    </li>
-                    <li className="px-[5px] py-[14px] hover:text-primary cursor-pointer">
-                        <a href="">ABOUT</a>
-                    </li>
-                    <li className="px-[5px] py-[14px] hover:text-primary cursor-pointer">
-                        <a href="">BOOK TABLE</a>
-                    </li>
+                <nav
+                    className={`sm:static absolute top-0 left-0 max-sm:z-10 sm:w-auto sm:h-auto h-full w-full  max-sm:bg-slate-500 text-white sm:flex hidden ${
+                        isMenuModal && "max-sm:!grid place-content-center"
+                    }`}
+                >
+                    <ul className="flex gap-x-2 sm:flex-row flex-col items-center">
+                        <li className="px-[5px] py-[14px] hover:text-primary cursor-pointer">
+                            <a href="#">HOME</a>
+                        </li>
+                        <li className="px-[5px] py-[14px] hover:text-primary cursor-pointer">
+                            <a href="#">MENU</a>
+                        </li>
+                        <li className="px-[5px] py-[14px] hover:text-primary cursor-pointer">
+                            <a href="#">ABOUT</a>
+                        </li>
+                        <li className="px-[5px] py-[14px] hover:text-primary cursor-pointer">
+                            <a href="#">BOOK TABLE</a>
+                        </li>
+                    </ul>
                 </nav>
                 <div className="flex gap-x-3 items-center">
-                    <a href="" className="px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all">
+                    <a href="#" className="px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all">
                         <FaUserAlt />
                     </a>
-                    <a href="" className="px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all">
+                    <a href="#" className="px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all">
                         <FaShoppingCart />
                     </a>
                     <button
@@ -40,12 +50,24 @@ const Header = () => {
                     >
                         <FaSearch />
                     </button>
-                    <a href="">
+                    <a href="#" className="sm:inline-block hidden">
                         <button className="btn">Order Online</button>
                     </a>
+                    <button className="sm:hidden text-xl inline-block" onClick={() => setIsMenuModal(!isMenuModal)}>
+                        <GiHamburgerMenu />
+                    </button>
                 </div>
+                {isMenuModal && (
+                    <GiCancel
+                        size={25}
+                        className="sm:hidden absolute right-4 top-4  cursor-pointer hover:opacity-60 z-20"
+                        onClick={() => {
+                            setIsMenuModal(false);
+                        }}
+                    />
+                )}
             </div>
-            {isSearchModal && <SearchComponent setIsSearchModal={setIsSearchModal}/>}
+            {isSearchModal && <SearchComponent setIsSearchModal={setIsSearchModal} />}
         </div>
     );
 };
