@@ -7,7 +7,7 @@ import { GiCancel } from "react-icons/gi";
 const SearchComponent = ({ setIsSearchModal }) => {
     return (
         <div
-            className="fixed w-screen h-[calc(100vh_-_88px)] z-40 top-0 left-0 
+            className="fixed w-screen h-[calc(100vh_-_88px)] z-30 top-0 left-0 
                     after:content-[''] after:w-screen after:h-screen after:bg-white 
                     after:absolute after:opacity-60 grid place-content-center"
         >
@@ -16,7 +16,7 @@ const SearchComponent = ({ setIsSearchModal }) => {
                     setIsSearchModal(false);
                 }}
             >
-                <div className="relative z-50 w-full h-full text-black">
+                <div className="relative z-40 w-full h-full text-black">
                     <div className="w-[375px] p-5 md:w-[450px] md:p-10  border-2 rounded-3xl">
                         <GiCancel
                         size={25}

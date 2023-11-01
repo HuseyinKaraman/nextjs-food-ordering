@@ -14,3 +14,19 @@ body {
 .btn {
     @apply bg-primary rounded-3xl px-[25px] py-[8px] cursor-pointer hover:opacity-70 transition-all
 }
+
+.slick-dots {
+    @apply !flex justify-start w-full; 
+}
+
+
+.slick-dots li {
+    @apply !m-0
+}
+.slick-dots li button:before{
+    @apply opacity-70 text-[14px] text-white mt-10
+}
+
+.slick-dots .slick-active button:before{
+    @apply rounded-full !text-primary text-[18px]
+}

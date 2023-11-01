@@ -1,7 +1,12 @@
-import React from 'react'
+import React from "react";
+import Carousel from "../../components/Carousel";
 
 const Index = () => {
-  return (<></> )
-}
+    return (
+        <div className="relative z-10">
+            <Carousel />
+        </div>
+    );
+};
 
-export default Index
+export default Index;

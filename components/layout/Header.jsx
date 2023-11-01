@@ -3,22 +3,22 @@ import { FaSearch, FaShoppingCart, FaUserAlt } from "react-icons/fa";
 import { GiCancel, GiHamburgerMenu } from "react-icons/gi";
 import Logo from "../ui/Logo";
 import SearchComponent from "../ui/SearchComponent";
+import { useRouter } from "next/router";
 
 const Header = () => {
     const [isSearchModal, setIsSearchModal] = useState(false);
     const [isMenuModal, setIsMenuModal] = useState(false);
-
-    console.log(!isMenuModal && "!grid place-content-center");
+    const router = useRouter()
 
     return (
-        <div className="h-[5.5rem] bg-secondray text-white">
-            <div className="sm:container max-sm:mx-4 flex items-center justify-between mx-auto h-full">
+        <div className={`h-[5.5rem] text-white  relative z-20 ${router.asPath === "/" ? "bg-transparent" : "bg-secondray"}`}>
+            <div className="sm:container max-sm:mx-4 flex items-center !justify-between mx-auto h-full">
                 <div>
                     <Logo />
                 </div>
                 {/** //! Seo için nav yapıldı  */}
                 <nav
-                    className={`sm:static absolute top-0 left-0 max-sm:z-10 sm:w-auto sm:h-auto h-full w-full  max-sm:bg-slate-500 text-white sm:flex hidden ${
+                    className={`sm:static absolute top-0 left-0 max-sm:z-20 max-sm:!h-screen max-sm:!w-screen  max-sm:bg-slate-500 text-white sm:flex hidden ${
                         isMenuModal && "max-sm:!grid place-content-center"
                     }`}
                 >
