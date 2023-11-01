@@ -18,8 +18,8 @@ const Header = () => {
                 </div>
                 {/** //! Seo için nav yapıldı  */}
                 <nav
-                    className={`sm:static absolute top-0 left-0 max-sm:z-20 max-sm:!h-screen max-sm:!w-screen  max-sm:bg-slate-500 text-white sm:flex hidden ${
-                        isMenuModal && "max-sm:!grid place-content-center"
+                    className={`sm:static absolute top-0 left-0 z-40 sm:h-auto sm:w-auto sm:bg-transparent h-screen w-screen bg-slate-500 text-white sm:flex hidden ${
+                        isMenuModal && "!grid place-content-center"
                     }`}
                 >
                     <ul className="flex gap-x-2 sm:flex-row flex-col items-center">
@@ -60,7 +60,7 @@ const Header = () => {
                 {isMenuModal && (
                     <GiCancel
                         size={25}
-                        className="sm:hidden absolute right-4 top-4  cursor-pointer hover:opacity-60 z-20"
+                        className="sm:hidden absolute right-4 top-4  cursor-pointer hover:opacity-60 z-50"
                         onClick={() => {
                             setIsMenuModal(false);
                         }}

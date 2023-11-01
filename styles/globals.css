@@ -16,7 +16,7 @@ body {
 }
 
 .slick-dots {
-    @apply !flex justify-start w-full; 
+    @apply !flex justify-start w-full short:justify-end; 
 }
 
 
@@ -24,7 +24,7 @@ body {
     @apply !m-0
 }
 .slick-dots li button:before{
-    @apply opacity-70 text-[14px] text-white mt-10
+    @apply opacity-70 text-[14px] text-white mt-10 short:-mt-10
 }
 
 .slick-dots .slick-active button:before{

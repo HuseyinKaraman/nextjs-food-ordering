@@ -26,6 +26,9 @@ module.exports = {
                 dancing: ["Dancing Script", "cursive"],
                 sans:['Open Sans', "sans-serif"],
             },
+            screens:{
+                'short': { 'raw': '(max-height: 30rem)' },
+            }
         },
     },
     plugins: [],
