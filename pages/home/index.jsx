@@ -1,10 +1,12 @@
 import React from "react";
 import Carousel from "../../components/Carousel";
+import Campaings from "../../components/Campaings";
 
 const Index = () => {
     return (
-        <div className="relative z-10">
+        <div>
             <Carousel />
+            <Campaings/>
         </div>
     );
 };

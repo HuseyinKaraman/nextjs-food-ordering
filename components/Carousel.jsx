@@ -22,7 +22,7 @@ const Carousel = () => {
             </div>
             <Slider {...settings} className="mx-auto w-10/12">
                 <div className="">
-                    <div className="ml-8 text-white flex flex-col items-start gap-y-10 mt-[30%] short:mt-[110px]">
+                    <div className="ml-8 text-white flex flex-col items-start gap-y-10 mt-72 short:mt-[140px]">
                         <Title addClass={"text-6xl"}>Fast Food Restaurant</Title>
                         <p className="my-1 text-sm font-sans">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, a non eaque eum accusantium
@@ -33,7 +33,7 @@ const Carousel = () => {
                     </div>
                 </div>
                 <div className="">
-                    <div className="ml-8 text-white flex flex-col items-start gap-y-10  mt-[30%] short:mt-[110px]">
+                    <div className="ml-8 text-white flex flex-col items-start gap-y-10  mt-72 short:mt-[140px]">
                         <Title addClass={"text-6xl"}>Fast Food Restaurant2 </Title>
                         <p className="my-1 text-sm font-sans">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, a non eaque eum accusantium
@@ -44,7 +44,7 @@ const Carousel = () => {
                     </div>
                 </div>
                 <div className="">
-                    <div className="ml-8 text-white flex flex-col items-start gap-y-10  mt-[30%] short:mt-[110px]">
+                    <div className="ml-8 text-white flex flex-col items-start gap-y-10  mt-72 short:mt-[140px]">
                         <Title addClass={"text-6xl"}>Fast Food Restaurant2 </Title>
                         <p className="my-1 text-sm font-sans">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, a non eaque eum accusantium

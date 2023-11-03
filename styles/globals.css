@@ -12,7 +12,7 @@ body {
 }
 
 .btn {
-    @apply bg-primary rounded-3xl px-[25px] py-[8px] cursor-pointer hover:opacity-70 transition-all
+    @apply bg-primary rounded-full px-[25px] py-[8px] cursor-pointer hover:opacity-70 transition-all
 }
 
 .slick-dots {
