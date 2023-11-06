@@ -29,7 +29,7 @@ const Carousel = () => {
                             dignissimos quae debitis incidunt odit, consequuntur aliquid perferendis. Perspiciatis
                             dolorum repellendus ducimus, commodi enim consequatur minima!
                         </p>
-                        <button className="btn">Order Now</button>
+                        <button className="btn-primary">Order Now</button>
                     </div>
                 </div>
                 <div className="">
@@ -40,7 +40,7 @@ const Carousel = () => {
                             dignissimos quae debitis incidunt odit, consequuntur aliquid perferendis. Perspiciatis
                             dolorum repellendus ducimus, commodi enim consequatur minima!
                         </p>
-                        <button className="btn">Order Now</button>
+                        <button className="btn-primary">Order Now</button>
                     </div>
                 </div>
                 <div className="">
@@ -51,7 +51,7 @@ const Carousel = () => {
                             dignissimos quae debitis incidunt odit, consequuntur aliquid perferendis. Perspiciatis
                             dolorum repellendus ducimus, commodi enim consequatur minima!
                         </p>
-                        <button className="btn">Order Now</button>
+                        <button className="btn-primary">Order Now</button>
                     </div>
                 </div>
             </Slider>

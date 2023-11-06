@@ -14,7 +14,7 @@ const CampaingItem = ({imageName,title,discount}) => {
                     <span className="text-[40px]">{discount}%</span>
                     <span className="inline-block ml-1">Off</span>
                 </p>
-                <button className="btn font-sans"> Order Now <MdShoppingCart className="inline-block ml-[2px]" /></button>
+                <button className="btn-primary font-sans"> Order Now <MdShoppingCart className="inline-block ml-[2px]" /></button>
             </div>
         </div>
     );
@@ -22,7 +22,7 @@ const CampaingItem = ({imageName,title,discount}) => {
 
 const Campaings = () => {
     return (
-        <div className="flex justify-between mx-2 sm:container py-8 sm:mx-auto sm:gap-x-10 gap-y-3 flex-col md:flex-row">           
+        <div className="flex justify-between mx-2 sm:container py-8 sm:mx-auto sm:gap-x-5 gap-y-3 flex-col md:flex-row">           
          <CampaingItem imageName="o1.jpg" title={"Burger"} discount={50}/>
             <CampaingItem imageName="o2.jpg" title={"Cheese"} discount={20}/>
         </div>

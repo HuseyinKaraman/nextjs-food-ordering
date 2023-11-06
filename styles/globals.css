@@ -11,8 +11,12 @@ body {
     @apply box-border;
 }
 
-.btn {
+.btn-primary {
     @apply bg-primary rounded-full px-[25px] py-[8px] cursor-pointer hover:opacity-70 transition-all
+}
+
+.btn-secondary {
+    @apply bg-secondray text-white rounded-full px-[25px] py-[8px] cursor-pointer hover:opacity-70 transition-all
 }
 
 .slick-dots {

@@ -51,7 +51,7 @@ const Header = () => {
                         <FaSearch />
                     </button>
                     <a href="#" className="sm:inline-block hidden">
-                        <button className="btn">Order Online</button>
+                        <button className="btn-primary">Order Online</button>
                     </a>
                     <button className="sm:hidden text-xl inline-block" onClick={() => setIsMenuModal(!isMenuModal)}>
                         <GiHamburgerMenu />
