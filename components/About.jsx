@@ -7,7 +7,7 @@ const About = () => {
         <div className="bg-secondray py-10 md:p-14">
             <div className="container mx-auto flex gap-8 md:gap-20 items-center justify-center flex-wrap-reverse lg:flex-nowrap">
                 <div>
-                    <div className="relative w-[350px] h-[450px] md:w-[445px] md:h-[600px]">
+                    <div className="relative w-[300px] h-[450px] md:w-[445px] md:h-[600px]">
                         <Image src={"/images/about-img.png"} alt="about" layout="fill" />
                     </div>
                 </div>
