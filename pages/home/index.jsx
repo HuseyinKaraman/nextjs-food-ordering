@@ -4,16 +4,18 @@ import Campaings from "../../components/Campaings";
 import MenuWrapper from "../../components/menu/MenuWrapper";
 import About from "../../components/About";
 import Reservation from "../../components/Reservation";
+import Customers from "../../components/customer/Customers";
 
 const Index = () => {
     return (
-        <div>
+        <>
             <Carousel />
             <Campaings/>
             <MenuWrapper/>
             <About />
             <Reservation/>
-        </div>
+            <Customers/>
+        </>
     );
 };
 
