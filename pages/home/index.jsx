@@ -5,7 +5,6 @@ import MenuWrapper from "../../components/menu/MenuWrapper";
 import About from "../../components/About";
 import Reservation from "../../components/Reservation";
 import Customers from "../../components/customer/Customers";
-import Footer from "../../components/layout/Footer";
 
 const Index = () => {
     return (
@@ -16,7 +15,6 @@ const Index = () => {
             <About />
             <Reservation/>
             <Customers/>
-            <Footer />
         </>
     );
 };
