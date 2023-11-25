@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { adminSchema } from "../../schema/adminSchema";
 import Link from "next/link";
 
-const Index = () => {
+const Login = () => {
     const onSubmit = async (values, actions) => {
         await new Promise((resolve) => setTimeout(resolve, 2000));
         alert(values.username)
@@ -65,4 +65,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default Login;

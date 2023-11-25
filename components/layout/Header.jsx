@@ -46,7 +46,7 @@ const Header = () => {
                     <Link href="/auth/login" className="px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all">
                         <FaUserAlt />
                     </Link>
-                    <Link href="/" className="px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all">
+                    <Link href="/cart" className="px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all">
                         <FaShoppingCart />
                     </Link>
                     <button

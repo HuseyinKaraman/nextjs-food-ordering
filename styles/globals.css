@@ -34,3 +34,30 @@ body {
 .slick-dots .slick-active button:before{
     @apply rounded-full !text-primary text-[18px]
 }
+
+.table_wrapper {
+    @apply w-full max-h-[500px] overflow-auto whitespace-nowrap 
+}
+
+
+/* Firefox */
+.table_wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: #000000 #DFE9EB;
+  }
+  
+  /* Chrome, Edge and Safari */
+  .table_wrapper ::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+  }
+  .table_wrapper ::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #DFE9EB;
+  }
+  
+  .table_wrapper ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #060606;
+  }
+  
