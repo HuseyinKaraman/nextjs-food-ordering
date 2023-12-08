@@ -5,8 +5,10 @@ import Logo from "../ui/Logo";
 import SearchComponent from "../ui/SearchComponent";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+    const cart = useSelector((state) => state.cart);
     const [isSearchModal, setIsSearchModal] = useState(false);
     const [isMenuModal, setIsMenuModal] = useState(false);
     const router = useRouter();
@@ -43,11 +45,18 @@ const Header = () => {
                     </div>
                 </nav>
                 <div className="flex gap-x-3 items-center">
-                    <Link href="/auth/login" className="px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all">
+                    <Link
+                        href="/auth/login"
+                        className="px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all"
+                    >
                         <FaUserAlt />
                     </Link>
-                    <Link href="/cart" className="px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all">
+                    <Link
+                        href="/cart"
+                        className="relative px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all"
+                    >
                         <FaShoppingCart />
+                        <span className="absolute -right-1 -top-0 px-[3px] text-center text-xs font-semibold text-black rounded-full bg-primary">{cart.quantity > 0 ? cart.quantity : null}</span>
                     </Link>
                     <button
                         className="px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all"

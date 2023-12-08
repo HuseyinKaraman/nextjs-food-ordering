@@ -1,4 +1,5 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
+import Link from "next/link";
 import React from "react";
 import { MdShoppingCart } from "react-icons/md";
 
@@ -6,9 +7,11 @@ const MenuItem = ({ imageSrc, title, price, description }) => {
     return (
         <div className="h-[420px] w-[320px] bg-secondray rounded-[30px]">
             <div className="h-[190px] w-full rounded-bl-[44px] bg-[#f1f2f3] rounded-t-[25px] grid place-content-center">
-            <div className="relative h-36 w-36 hover:scale-110 hover:cursor-pointer transition-all"> 
-                <Image layout="fill" src={`/images/${imageSrc}`} alt="" objectFit="contain" />
-            </div>
+                <Link href={`/product`}>
+                    <div className="relative h-36 w-36 hover:scale-110 hover:cursor-pointer transition-all"> 
+                        <Image layout="fill" src={`/images/${imageSrc}`} alt="" objectFit="contain" />
+                    </div>
+                </Link>
             </div>
             <div className="px-3 pt-3 text-white h-[200px] relative">
                 <h4 className="text-lg font-sans font-semibold">{title}</h4>
