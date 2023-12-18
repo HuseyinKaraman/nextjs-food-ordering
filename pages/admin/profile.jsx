@@ -4,9 +4,43 @@ import Order from "../../components/admin/Order";
 import Products from "../../components/admin/Products";
 import Category from "../../components/admin/Category";
 import Footer from "../../components/admin/Footer";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import OutsideClickHandler from "react-outside-click-handler";
+import PopConfirm from "../../components/ui/PopConfirm";
 
 const Profile = () => {
     const [tabs, setTabs] = useState(0);
+    const [confirm, setConfirm] = useState(false);
+
+    const { push } = useRouter();
+
+    const exitAdminAccount = async () => {
+        try {
+            setConfirm(false);
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/admin`);
+            if (res.status === 200) {
+                push("/admin");
+                toast.success("Admin Logout", {
+                    position: "top-right",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                });
+            }
+        } catch (err) {
+            const message = err.response ? err.response : "Something went wrong";
+            toast.error(message, {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+            });
+        }
+    };
 
     return (
         <div className="flex min-h-[calc(100vh_-_448px)] mt-5 p-2 md:p-4 flex-col lg:flex-row gap-x-5">
@@ -60,12 +94,19 @@ const Profile = () => {
                     </li>
                     <li
                         className="hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 w-full"
-                        onClick={() => setTabs(4)}
+                        onClick={() => setConfirm(true)}
                     >
                         <i className="fa fa-sign-out block md:inline-block mr-2 text-xl md:text-2xl"></i>
                         <span>Exit</span>
                     </li>
                 </ul>
+                {confirm && (
+                    <PopConfirm
+                        setConfirm={setConfirm}
+                        sendRequest={exitAdminAccount}
+                        question={"Are you sure you want to exit?"}
+                    />
+                )}
             </div>
             <div className="flex-1 max-w-[1200px] overflow-hidden">
                 {tabs === 0 && <Products />}
@@ -75,6 +116,24 @@ const Profile = () => {
             </div>
         </div>
     );
+};
+
+//** https://nextjs.org/docs/pages/api-reference/functions/get-server-side-props */
+//! todo : change this func dinamic token
+export const getServerSideProps = (ctx) => {
+    const myCookie = ctx.req?.cookies || "";
+    if (myCookie.token !== process.env.ADMIN_TOKEN) {
+        return {
+            redirect: {
+                destination: "/admin",
+                permanent: false,
+            },
+        };
+    }
+
+    return {
+        props: {},
+    };
 };
 
 export default Profile;

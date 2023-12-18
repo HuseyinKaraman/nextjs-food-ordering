@@ -3,9 +3,31 @@ import Image from "next/image";
 import Account from "../../components/profile/Account";
 import Password from "../../components/profile/Password";
 import Order from "../../components/profile/Order";
+import PopConfirm from "../../components/ui/PopConfirm";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const Profile = () => {
     const [tabs, setTabs] = useState(0);
+    const [confirm, setConfirm] = useState(false);
+    const { push } = useRouter();
+
+    const handleSignOut = async () => {
+        try {
+            setConfirm(false);
+            signOut({ redirect: false });
+            push("/auth/login");
+        } catch (err) {
+            // const message = "Something went wrong";
+            // toast.error(message, {
+            //     position: "top-right",
+            //     autoClose: 1000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            // });
+        }
+    };
 
     return (
         <div className="flex min-h-[calc(100vh_-_448px)] mt-5 p-2 md:p-4 flex-col lg:flex-row">
@@ -23,7 +45,9 @@ const Profile = () => {
                 <ul className="flex flex-row lg:flex-col border-t lg:border-none justify-evenly font-semibold">
                     <li
                         href="/profile/"
-                        className={`hover:bg-primary hover:text-white cursor-pointer  p-1 py-3 lg:p-3 border-r lg:border-y lg:border-r-0  w-full ${tabs ===0 && 'bg-primary text-white'}`}
+                        className={`hover:bg-primary hover:text-white cursor-pointer  p-1 py-3 lg:p-3 border-r lg:border-y lg:border-r-0  w-full ${
+                            tabs === 0 && "bg-primary text-white"
+                        }`}
                         onClick={() => setTabs(0)}
                     >
                         <i className="fa fa-home inline-block mr-2 text-xl lg:text-2xl"> </i>
@@ -31,7 +55,9 @@ const Profile = () => {
                     </li>
                     <li
                         href="/profile/"
-                        className={`hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 border-r lg:border-b lg:border-r-0  w-full ${tabs ===1 && 'bg-primary text-white'}`}
+                        className={`hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 border-r lg:border-b lg:border-r-0  w-full ${
+                            tabs === 1 && "bg-primary text-white"
+                        }`}
                         onClick={() => setTabs(1)}
                     >
                         <i className="fa fa-key inline-block mr-2 text-xl"></i>
@@ -39,7 +65,9 @@ const Profile = () => {
                     </li>
                     <li
                         href="/profile/"
-                        className={`hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 border-r lg:border-b lg:border-r-0  w-full ${tabs ===2 && 'bg-primary text-white'}`}
+                        className={`hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 border-r lg:border-b lg:border-r-0  w-full ${
+                            tabs === 2 && "bg-primary text-white"
+                        }`}
                         onClick={() => setTabs(2)}
                     >
                         <i className="fa fa-motorcycle inline-block mr-2 text-xl"></i>
@@ -48,18 +76,25 @@ const Profile = () => {
                     <li
                         href="/profile/"
                         className="hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 w-full"
-                        onClick={() => setTabs(3)}
+                        onClick={() => setConfirm(true)}
                     >
                         <i className="fa fa-sign-out inline-block mr-2 text-xl lg:text-2xl"></i>
                         <span>Exit</span>
                     </li>
                 </ul>
+                {confirm && (
+                    <PopConfirm
+                        setConfirm={setConfirm}
+                        question="Are you sure you want to exit?"
+                        sendRequest={handleSignOut}
+                    />
+                )}
             </div>
             <div className="flex-1 lg:px-10 max-w-[1200px]">
-                {(tabs === 0) && <Account />}
-                {(tabs === 1) && <Password />}
-                {(tabs === 2) && <Order />}
-                </div>
+                {tabs === 0 && <Account />}
+                {tabs === 1 && <Password />}
+                {tabs === 2 && <Order />}
+            </div>
         </div>
     );
 };

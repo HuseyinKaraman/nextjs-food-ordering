@@ -19,6 +19,10 @@ body {
     @apply bg-secondray text-white rounded-full px-[25px] py-[8px] cursor-pointer hover:opacity-70 transition-all
 }
 
+.btn {
+    @apply bg-secondray text-white rounded-full px-[12px] py-[4px] cursor-pointer hover:opacity-70 transition-all
+}
+
 .slick-dots {
     @apply !flex justify-start w-full short:justify-end; 
 }
