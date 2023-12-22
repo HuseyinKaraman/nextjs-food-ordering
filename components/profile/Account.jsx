@@ -1,24 +1,46 @@
-import React from "react";
+import axios from "axios";
+import { useFormik } from "formik";
+import { toast } from "react-toastify";
+import { profileSchema } from "../../schema/profileSchema";
 import Title from "../ui/Title";
 import Input from "../form/Input";
-import { useFormik } from "formik";
-import { profileSchema } from "../../schema/profileSchema";
 
-const Account = () => {
+const Account = ({user}) => {
     const onSubmit = async (values, actions) => {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        alert(values.password);
-        actions.resetForm();
+        try {
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/${user?._id}`, values);
+            if (res.status === 200) {
+               Object.assign(user, res.data);
+                toast.success("Profile updated successfully", {
+                    position: "top-right",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                });
+            }
+            actions.resetForm();
+        } catch (error) {
+            const message = error.response.data ? error.response.data.message : "Something went wrong";
+            toast.error(message, {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+            })
+        }
     };
 
     const { values, errors, touched, handleSubmit, handleChange, handleBlur } = useFormik({
+        enableReinitialize: true,
         initialValues: {
-            fullName: "",
-            email: "",
-            phoneNumber: "",
-            address: "",
-            job: "",
-            bio: "",
+            fullName: user?.fullName,
+            email: user?.email,
+            phoneNumber: user?.phoneNumber,
+            address: user?.address,
+            job: user?.job,
+            bio: user?.bio,
         },
 
         onSubmit,

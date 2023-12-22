@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { signIn, getSession, useSession } from "next-auth/react";
+import { useFormik } from "formik";
+import { toast } from "react-toastify";
+import { loginSchema } from "../../schema/loginSchema";
 import Title from "../../components/ui/Title";
 import Input from "../../components/form/Input";
-import { useFormik } from "formik";
-import { loginSchema } from "../../schema/loginSchema";
-import Link from "next/link";
-import { useSession, signIn } from "next-auth/react";
-import { toast } from "react-toastify";
-import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const inputs = [
     {
@@ -22,8 +22,14 @@ const inputs = [
 ];
 
 const Login = () => {
-    const { push } = useRouter();
     const { data: session } = useSession();
+    const { push } = useRouter();
+
+    useEffect(() => {
+       if (session) {
+        push("/profile/"+session?.user._id);
+       }
+      }, [push, session]);
 
     const onSubmit = async (values, actions) => {
         const { email, password } = values;
@@ -61,14 +67,6 @@ const Login = () => {
         onSubmit,
         validationSchema: loginSchema,
     });
-
-    useEffect(() => {
-        if (session) {
-            push("/profile");
-        }
-    }, [push, session]);
-
-    console.log(session);
 
     return (
         <div className="container mx-auto py-20 sm:h-[630px]">
@@ -114,5 +112,22 @@ const Login = () => {
         </div>
     );
 };
+
+export async function getServerSideProps(ctx) {
+    const session = await getSession({ req:ctx.req });
+
+    if (session) {
+        return {
+            redirect: {
+                destination: `/profile/${session.user._id}`,
+                permanent: false,
+            },
+        };
+    }
+
+    return {
+        props: {},
+    };
+}
 
 export default Login;

@@ -4,10 +4,11 @@ import Account from "../../components/profile/Account";
 import Password from "../../components/profile/Password";
 import Order from "../../components/profile/Order";
 import PopConfirm from "../../components/ui/PopConfirm";
-import { signOut } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
+import axios from "axios";
 
-const Profile = () => {
+const Profile = ({ user }) => {
     const [tabs, setTabs] = useState(0);
     const [confirm, setConfirm] = useState(false);
     const { push } = useRouter();
@@ -18,14 +19,14 @@ const Profile = () => {
             signOut({ redirect: false });
             push("/auth/login");
         } catch (err) {
-            // const message = "Something went wrong";
-            // toast.error(message, {
-            //     position: "top-right",
-            //     autoClose: 1000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            // });
+            const message = "Something went wrong";
+            toast.error(message, {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+            });
         }
     };
 
@@ -34,17 +35,16 @@ const Profile = () => {
             <div className="relative border-2 w-full max-w-[720px] lg:w-auto lg:min-w-[325px] mx-auto h-fit mb-5">
                 <div className="my-5">
                     <Image
-                        src={"/images/client1.jpg"}
+                        src={user?.image ? user.image : "/images/default-user.png"}
                         alt="profile"
                         width={100}
                         height={100}
                         className="rounded-full mx-auto"
                     />
-                    <h3 className="text-2xl font-bold text-center mt-1">Marie Clare</h3>
+                    <h3 className="text-2xl font-bold text-center mt-1">{user?.fullName}</h3>
                 </div>
                 <ul className="flex flex-row lg:flex-col border-t lg:border-none justify-evenly font-semibold">
                     <li
-                        href="/profile/"
                         className={`hover:bg-primary hover:text-white cursor-pointer  p-1 py-3 lg:p-3 border-r lg:border-y lg:border-r-0  w-full ${
                             tabs === 0 && "bg-primary text-white"
                         }`}
@@ -54,7 +54,6 @@ const Profile = () => {
                         <span>Account</span>
                     </li>
                     <li
-                        href="/profile/"
                         className={`hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 border-r lg:border-b lg:border-r-0  w-full ${
                             tabs === 1 && "bg-primary text-white"
                         }`}
@@ -64,7 +63,6 @@ const Profile = () => {
                         <span>Password</span>
                     </li>
                     <li
-                        href="/profile/"
                         className={`hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 border-r lg:border-b lg:border-r-0  w-full ${
                             tabs === 2 && "bg-primary text-white"
                         }`}
@@ -74,7 +72,6 @@ const Profile = () => {
                         <span>Orders</span>
                     </li>
                     <li
-                        href="/profile/"
                         className="hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 w-full"
                         onClick={() => setConfirm(true)}
                     >
@@ -91,12 +88,38 @@ const Profile = () => {
                 )}
             </div>
             <div className="flex-1 lg:px-10 max-w-[1200px]">
-                {tabs === 0 && <Account />}
-                {tabs === 1 && <Password />}
+                {tabs === 0 && <Account user={user} />}
+                {tabs === 1 && <Password id={user._id}/>}
                 {tabs === 2 && <Order />}
             </div>
         </div>
     );
 };
+
+export async function getServerSideProps(ctx) {
+    const session = await getSession({ req: ctx.req });
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: "/auth/login",
+                permanent: false,
+            },
+        };
+    }
+
+    let user = null;
+    try {
+        user = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/${session.user._id}`);
+    } catch (error) {
+        console.log(error);
+    }
+
+    return {
+        props: {
+            user: user ? user.data : null,
+        },
+    };
+}
 
 export default Profile;

@@ -12,6 +12,10 @@ dbConnect();
 
 export const authOptions = {
     // adapter : MongoDBAdapter(clientPromise),
+    session: {
+        strategy: "jwt",
+        maxAge: 1 * 24 * 60 * 60, // 1 days
+    },
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_ID,
@@ -22,13 +26,14 @@ export const authOptions = {
             clientId: process.env.GOOGLE_ID,
             clientSecret: process.env.GOOGLE_SECRET,
         }),
-        CredentialsProvider({ // https://next-auth.js.org/configuration/providers/credentials
+        CredentialsProvider({
+            // https://next-auth.js.org/configuration/providers/credentials
             name: "Credentials",
             credentials: {
                 email: { label: "email", type: "email", placeholder: "Enter your email" },
                 password: { label: "password", type: "password" },
             },
-            async authorize(credentials, req) {
+            async authorize(credentials) {
                 const email = credentials.email;
                 const password = credentials.password;
                 const user = await User.findOne({ email: email });
@@ -45,7 +50,15 @@ export const authOptions = {
         signUp: "/auth/register",
     },
     database: process.env.MONGODB_URI,
-    secret: "s3cret"
+    secret: "s3cret",
+    callbacks: {
+        session: ({ session, token, user }) => {
+            if (token) {
+                session.user._id = token.sub;
+            }
+            return session;
+        },
+    },
 };
 
 export default NextAuth(authOptions);

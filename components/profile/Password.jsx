@@ -3,15 +3,39 @@ import Title from "../ui/Title";
 import Input from "../form/Input";
 import { useFormik } from "formik";
 import { newPasswordSchema } from "../../schema/newPasswordSchema";
+import { toast } from "react-toastify";
+import axios from "axios";
 
-const Password = () => {
+const Password = ({id}) => {
     const onSubmit = async (values, actions) => {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        alert(values.password);
-        actions.resetForm();
+        try {
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/${id}`, {
+                password: values.password,
+            });
+            if (res.status === 200) {
+                toast.success("Password updated successfully", {
+                    position: "top-right",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                });
+            }
+            actions.resetForm();
+        } catch (error) {
+            const message = "Something went wrong";
+            toast.error(message, {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+            })
+        }
     };
 
     const { values, errors, touched, handleSubmit, handleChange, handleBlur } = useFormik({
+        enableReinitialize: true,
         initialValues: {
             password: "",
             confirmPassword: "",

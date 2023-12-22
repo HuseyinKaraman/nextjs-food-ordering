@@ -12,7 +12,7 @@ const Input = (props) => {
                     ${touched && errorMessage ? "border-danger" : "border-primary"  }`}
                     type={type}
                     {...inputProps}
-                    required
+                    // required
                 />
                 {type !== "datetime-local" && (
                     <span className="absolute top-0 left-0 px-4 h-full flex items-center text-sm peer-focus:h-7 peer-focus:text-xs peer-valid:h-7 peer-valid:text-xs transition-all">
