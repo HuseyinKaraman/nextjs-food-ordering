@@ -9,7 +9,7 @@ const MenuItem = ({ imageSrc, title, price, description }) => {
             <div className="h-[190px] w-full rounded-bl-[44px] bg-[#f1f2f3] rounded-t-[25px] grid place-content-center">
                 <Link href={`/product`}>
                     <div className="relative h-36 w-36 hover:scale-110 hover:cursor-pointer transition-all"> 
-                        <Image layout="fill" src={`/images/${imageSrc}`} alt="" objectFit="contain" />
+                        <Image layout="fill" src={`/images/${imageSrc}`} alt="" objectFit="contain" priority="true" />
                     </div>
                 </Link>
             </div>

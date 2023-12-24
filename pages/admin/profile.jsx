@@ -108,7 +108,7 @@ const Profile = () => {
                     />
                 )}
             </div>
-            <div className="flex-1 max-w-[1200px] overflow-hidden">
+            <div className="flex-1 max-w-[1200px] overflow-hidden relative">
                 {tabs === 0 && <Products />}
                 {tabs === 1 && <Order />}
                 {tabs === 2 && <Category />}
