@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Home from "./home";
+import axios from "axios";
 
-export default function Index() {
+export default function Index({categories}) {
     return (
         <div>
             <Head>
@@ -11,7 +12,17 @@ export default function Index() {
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
             </Head>
-            <Home />
+            <Home categories={categories}/>
         </div>
     );
 }
+
+export const getServerSideProps = async (ctx) => {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
+
+    return {
+        props: {
+            categories: res ? res.data : [],
+        },
+    };
+};

@@ -6,12 +6,12 @@ import About from "../../components/About";
 import Reservation from "../../components/Reservation";
 import Customers from "../../components/customer/Customers";
 
-const Index = () => {
+const Index = ({categories}) => {
     return (
         <>
             <Carousel />
             <Campaings/>
-            <MenuWrapper/>
+            <MenuWrapper categories={categories}/>
             <About />
             <Reservation/>
             <Customers/>
