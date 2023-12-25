@@ -9,10 +9,12 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import OutsideClickHandler from "react-outside-click-handler";
 import PopConfirm from "../../components/ui/PopConfirm";
+import AddProduct from "../../components/admin/AddProduct";
 
 const Profile = () => {
     const [tabs, setTabs] = useState(0);
     const [confirm, setConfirm] = useState(false);
+    const [isproductModal, setIsProductModal] = useState(false);
 
     const { push } = useRouter();
 
@@ -109,7 +111,15 @@ const Profile = () => {
                 )}
             </div>
             <div className="flex-1 max-w-[1200px] overflow-hidden relative">
-                {tabs === 0 && <Products />}
+                {isproductModal && <AddProduct setIsProductModal={setIsProductModal} />}
+                {tabs === 0 && (
+                    <>  
+                        <Products />
+                        <button onClick={() => setIsProductModal(true)}
+                            className="absolute right-5 top-5 text-2xl btn !bg-primary">+
+                        </button>
+                    </>
+                )}
                 {tabs === 1 && <Order />}
                 {tabs === 2 && <Category />}
                 {tabs === 3 && <Footer />}
