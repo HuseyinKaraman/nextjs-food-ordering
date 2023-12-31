@@ -1,5 +1,6 @@
 import Product from "../../../models/Product";
 import dbConnect from "../../../utils/dbConnect";
+import { ObjectId } from "mongodb";
 
 const handler = async (req, res) => {
     await dbConnect();
@@ -14,9 +15,13 @@ const handler = async (req, res) => {
         }
     } else if (method === "POST") {
         try {
-            const newProduct = await Product.create(req.body);
+            const newProduct = await Product.create({
+                ...req.body,
+                categoryId: new ObjectId(req.body.categoryId.trim())
+            });
             res.status(201).json(newProduct);
         } catch (error) {
+            console.log(error);
             res.status(500).json(error);
         }
     } else {

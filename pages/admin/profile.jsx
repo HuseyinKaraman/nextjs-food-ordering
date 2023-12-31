@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Order from "../../components/admin/Order";
 import Products from "../../components/admin/Products";
@@ -7,14 +7,14 @@ import Footer from "../../components/admin/Footer";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import OutsideClickHandler from "react-outside-click-handler";
 import PopConfirm from "../../components/ui/PopConfirm";
 import AddProduct from "../../components/admin/AddProduct";
 
-const Profile = () => {
+const Profile = ({ getCategories }) => {
     const [tabs, setTabs] = useState(0);
     const [confirm, setConfirm] = useState(false);
     const [isproductModal, setIsProductModal] = useState(false);
+    const [categories, setCategories] = useState(getCategories);
 
     const { push } = useRouter();
 
@@ -111,17 +111,20 @@ const Profile = () => {
                 )}
             </div>
             <div className="flex-1 max-w-[1200px] overflow-hidden relative">
-                {isproductModal && <AddProduct setIsProductModal={setIsProductModal} />}
+                {isproductModal && <AddProduct setIsProductModal={setIsProductModal} categories={categories} />}
                 {tabs === 0 && (
-                    <>  
+                    <>
                         <Products />
-                        <button onClick={() => setIsProductModal(true)}
-                            className="absolute right-5 top-5 text-2xl btn !bg-primary">+
+                        <button
+                            onClick={() => setIsProductModal(true)}
+                            className="absolute right-5 top-5 text-2xl btn !bg-primary"
+                        >
+                            +
                         </button>
                     </>
                 )}
                 {tabs === 1 && <Order />}
-                {tabs === 2 && <Category />}
+                {tabs === 2 && <Category setCategories={setCategories} categories={categories} />}
                 {tabs === 3 && <Footer />}
             </div>
         </div>
@@ -130,7 +133,7 @@ const Profile = () => {
 
 //** https://nextjs.org/docs/pages/api-reference/functions/get-server-side-props */
 //! todo : change this func dinamic token
-export const getServerSideProps = (ctx) => {
+export const getServerSideProps = async (ctx) => {
     const myCookie = ctx.req?.cookies || "";
     if (myCookie.token !== process.env.ADMIN_TOKEN) {
         return {
@@ -141,8 +144,17 @@ export const getServerSideProps = (ctx) => {
         };
     }
 
+    let res;
+    try {
+        res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
+    } catch (error) {
+        console.log(error);
+    }
+
     return {
-        props: {},
+        props: {
+            getCategories: res ? res.data : [],
+        },
     };
 };
 

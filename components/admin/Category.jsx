@@ -6,24 +6,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import PopConfirm from "../ui/PopConfirm";
 
-const Category = () => {
-    const [categories, setCategories] = useState([]);
+const Category = ({ categories, setCategories }) => {
     const [confirm, setConfirm] = useState(false);
     const [category, setCategory] = useState(false);
-
-    useEffect(() => {
-        const getCategories = async () => {
-            try {
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
-                if (res.status === 200) {
-                    setCategories(res.data);
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getCategories();
-    }, []);
 
     const handleCreate = async (values, actions) => {
         try {
