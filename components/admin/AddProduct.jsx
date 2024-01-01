@@ -9,12 +9,12 @@ import { newProductSchema } from "../../schema/newProductSchema";
 
 const multiChoice = ["Pizza", "Hamburger", "Fries", "Doner"];
 
-const AddProduct = ({ setIsProductModal, categories }) => {
+const AddProduct = ({ setIsProductModal, categories, getProducts }) => {
     const [file, setFile] = useState();
     const [imageSrc, setImageSrc] = useState(false);
     const [extraOptions, setExtraOptions] = useState([]);
     const [extra, setExtra] = useState({ text: "", price: 0, error: null });
-    const [prices, setPrices] = useState(multiChoice.includes(categories[0].name) ? [null,null,null] : [null]);
+    const [prices, setPrices] = useState(multiChoice.includes(categories[0].name) ? [null, null, null] : [null]);
 
     const onSubmit = async (values, actions) => {
         try {
@@ -36,6 +36,7 @@ const AddProduct = ({ setIsProductModal, categories }) => {
                     draggable: true,
                     progress: undefined,
                 });
+                getProducts();
             }
         } catch (error) {
             toast.error(error.response.data.message, {
@@ -137,7 +138,7 @@ const AddProduct = ({ setIsProductModal, categories }) => {
         categories.forEach((item) => {
             if (item._id === e.target.value) {
                 if (multiChoice.includes(item.name)) {
-                    setPrices([null,null,null]);
+                    setPrices([null, null, null]);
                 } else {
                     setPrices([null]);
                 }

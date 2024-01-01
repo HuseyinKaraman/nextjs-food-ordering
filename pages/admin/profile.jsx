@@ -15,6 +15,7 @@ const Profile = ({ getCategories }) => {
     const [confirm, setConfirm] = useState(false);
     const [isproductModal, setIsProductModal] = useState(false);
     const [categories, setCategories] = useState(getCategories);
+    const [products, setProducts] = useState([]);
 
     const { push } = useRouter();
 
@@ -41,6 +42,15 @@ const Profile = ({ getCategories }) => {
                 closeOnClick: true,
                 pauseOnHover: true,
             });
+        }
+    };
+
+    const getProducts = async () => {
+        try {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products`);
+            setProducts(res.data);
+        } catch (error) {
+            console.log(error);
         }
     };
 
@@ -111,10 +121,10 @@ const Profile = ({ getCategories }) => {
                 )}
             </div>
             <div className="flex-1 max-w-[1200px] overflow-hidden relative">
-                {isproductModal && <AddProduct setIsProductModal={setIsProductModal} categories={categories} />}
+                {isproductModal && <AddProduct setIsProductModal={setIsProductModal} categories={categories} getProducts={getProducts}/>}
                 {tabs === 0 && (
                     <>
-                        <Products />
+                        <Products getProducts={getProducts} products={products} setProducts={setProducts} />
                         <button
                             onClick={() => setIsProductModal(true)}
                             className="absolute right-5 top-5 text-2xl btn !bg-primary"
@@ -144,16 +154,16 @@ export const getServerSideProps = async (ctx) => {
         };
     }
 
-    let res;
+    let categoryRes;
     try {
-        res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
+        categoryRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
     } catch (error) {
         console.log(error);
     }
 
     return {
         props: {
-            getCategories: res ? res.data : [],
+            getCategories: categoryRes ? categoryRes.data : [],
         },
     };
 };

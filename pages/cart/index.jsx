@@ -38,7 +38,7 @@ const Index = () => {
                                         />
                                         <span>{item.name}</span>
                                     </td>
-                                    <td className="py-4 px-6 font-medium hover:text-white">{item.extras.map((extra) => extra.name + ", ")}</td>
+                                    <td className="py-4 px-6 font-medium hover:text-white">{item.extras.map((extra) => extra.text + ", ")}</td>
                                     <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">${item.price}</td>
                                     <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">{item.quantity}</td>
                                 </tr>
