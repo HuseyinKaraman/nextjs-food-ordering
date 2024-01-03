@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../ui/Title";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const Order = () => {
+    const [orders, setOrders] = useState([]);
+    const [status, setStatus] = useState( ["pending", "preparing", "on the way","delivered","canceled"]);
+
+    // anlık degişiklikleri yakalamak için yapıldı
+    useEffect(() => {
+        const getOrders = async () => {
+            try {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders`);
+                if (res.status === 200) {
+                    setOrders(res.data);
+                }
+            } catch (error) {
+                toast.error(error.message, {
+                    position: "top-right",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                });
+            }
+        };
+        getOrders();
+    }, []);
+
     return (
         <>
             <Title addClass={"text-[40px]"}>Orders</Title>
@@ -27,41 +53,17 @@ const Order = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="bg-secondray border-gray-700 hover:bg-primary transition-all cursor-pointer">
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">10795713855646846</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">ISTANBUL</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">01-09-2022</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">$20</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">preparing</td>
+                        {orders.map((order,index)=>(
+                            <tr key={order._id} className="bg-secondray border-gray-700 hover:bg-primary transition-all cursor-pointer">
+                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
+                                {order._id}
+                            </td>
+                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">{order.address}</td>
+                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">{order.createdAt.substring(0,10)}</td>
+                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">{order.total+(order.total*0.1)}</td>
+                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">{status[order.status]}</td>
                         </tr>
-                        <tr className="bg-secondray border-gray-700 hover:bg-primary transition-all cursor-pointer">
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">10795713855646846</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">ISTANBUL</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">01-09-2022</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">$20</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">preparing</td>
-                        </tr>
-                        <tr className="bg-secondray border-gray-700 hover:bg-primary transition-all cursor-pointer">
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">10795713855646846</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">ISTANBUL</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">01-09-2022</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">$20</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">preparing</td>
-                        </tr>
-                        <tr className="bg-secondray border-gray-700 hover:bg-primary transition-all cursor-pointer">
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">10795713855646846</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">ISTANBUL</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">01-09-2022</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">$20</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">preparing</td>
-                        </tr>
-                        <tr className="bg-secondray border-gray-700 hover:bg-primary transition-all cursor-pointer">
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">10795713855646846</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">ISTANBUL</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">01-09-2022</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">$20</td>
-                            <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">preparing</td>
-                        </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

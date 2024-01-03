@@ -1,5 +1,5 @@
 import dbConnect from "../../../utils/dbConnect";
-import User from "../../../models/Users";
+import User from "../../../models/User";
 import bcrypt from "bcrypt";
 
 const handler = async (req, res) => {
