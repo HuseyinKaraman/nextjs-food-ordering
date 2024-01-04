@@ -2,6 +2,14 @@ import axios from "axios";
 import Image from "next/legacy/image";
 
 const Index = ({ order }) => {
+    const status = order?.status;
+
+    const statusClass = (index) => {
+        if (index - status < 1) return "";
+        if (index - status === 1) return "animate-bounce";
+        if (index - status > 1) return "";
+    };
+
     return (
         <div className="flex w-full justify-between flex-col md:min-h-[calc(100vh_-_488px)] mt-8">
             <div className="table_wrapper md:p-2">
@@ -32,14 +40,14 @@ const Index = ({ order }) => {
                                 {order?.address}
                             </td>
                             <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white">
-                                ${order?.total+(order?.total*0.1)}
+                                ${order?.total + order?.total * 0.1}
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div className="flex justify-between items-center gap-4 mx-5 md:mx-10 mb-10 mt-10 p-5 bg-primary text-xs md:text-base">
-                <div className={`relative ${order.status === 0 ? "animate-bounce" : ""}`}>
+                <div className={`relative ${statusClass(1)}`}>
                     <Image
                         alt=""
                         src={"/images/paid.png"}
@@ -50,7 +58,7 @@ const Index = ({ order }) => {
                     />
                     <span>Payment</span>
                 </div>
-                <div className={`relative ${order.status === 1 ? "animate-bounce" : ""}`}>
+                <div className={`relative ${statusClass(2)}`}>
                     <Image
                         alt=""
                         src={"/images/bake.png"}
@@ -61,7 +69,7 @@ const Index = ({ order }) => {
                     />
                     <span>Preparing</span>
                 </div>
-                <div className={`relative ${order.status === 2 ? "animate-bounce" : ""}`}>
+                <div className={`relative ${statusClass(3)}`}>
                     <Image
                         alt=""
                         src={"/images/bike.png"}
@@ -72,7 +80,7 @@ const Index = ({ order }) => {
                     />
                     <span>On The Way</span>
                 </div>
-                <div className={`relative ${order.status === 3 ? "animate-bounce" : ""}`}>
+                <div className={`relative ${statusClass(4)}`}>
                     <Image
                         alt=""
                         src={"/images/delivered.png"}

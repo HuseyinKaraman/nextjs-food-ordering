@@ -36,7 +36,7 @@ const Index = ({ product }) => {
     };
 
     const handleAddToCart = () => {
-        dispatch(addProduct({ id: product._id, name: product.title, price, extras, size, desc: product, quantity: 1 }));
+        dispatch(addProduct({ id: product._id, name: product.title, img: product.img,price, extras, size, desc: product, quantity: 1 }));
     };
 
     return (

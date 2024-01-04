@@ -108,15 +108,17 @@ const Index = ({ user }) => {
                     <tbody>
                         {cart.products.map((item) => (
                             <tr className="bg-secondray border-gray-700 hover:bg-primary transition-all" key={item.id}>
-                                <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white flex items-center justify-center gap-x-1">
-                                    <Image
-                                        src={"/images/f1.png"}
-                                        alt=""
-                                        width={45}
-                                        height={45}
-                                        className="md:block hidden"
-                                    />
-                                    <span>{item.name}</span>
+                                <td className="py-4 px-6 font-medium whitespace-nowrap hover:text-white flex items-center justify-center gap-x-10">
+                                    <div className="flex justify-start md:w-[200px] gap-x-5">
+                                        <Image
+                                            src={item.img}
+                                            alt=""
+                                            width={45}
+                                            height={45}
+                                            className="md:block hidden"
+                                        />
+                                        <span>{item.name}</span>
+                                    </div>
                                 </td>
                                 <td className="py-4 px-6 font-medium hover:text-white">
                                     {item.extras.map((extra) => extra.text + ", ")}

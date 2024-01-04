@@ -3,15 +3,15 @@ import Title from "../ui/Title";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const Order = () => {
+const Order = ({id}) => {
     const [orders, setOrders] = useState([]);
-    const [status, setStatus] = useState( ["pending", "preparing", "on the way","delivered","canceled"]);
+    const status = ["pending", "preparing", "on the way","delivered","canceled"];
 
     // anlık degişiklikleri yakalamak için yapıldı
     useEffect(() => {
         const getOrders = async () => {
             try {
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders`);
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders?userId=${id}`);
                 if (res.status === 200) {
                     setOrders(res.data);
                 }
@@ -26,7 +26,7 @@ const Order = () => {
             }
         };
         getOrders();
-    }, []);
+    }, [id]);
 
     return (
         <>

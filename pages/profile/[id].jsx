@@ -90,7 +90,7 @@ const Profile = ({ user }) => {
             <div className="flex-1 lg:px-10 max-w-[1200px]">
                 {tabs === 0 && <Account user={user} />}
                 {tabs === 1 && <Password id={user._id}/>}
-                {tabs === 2 && <Order />}
+                {tabs === 2 && <Order id={user._id}/>}
             </div>
         </div>
     );

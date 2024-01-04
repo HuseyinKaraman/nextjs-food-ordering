@@ -24,7 +24,19 @@ const handler = async (req, res) => {
     } else if (method === "DELETE") {
         const orderRes = await Order.findByIdAndDelete(id);
         res.status(200).json(orderRes);
-    } else {
+    } 
+    else if (method === "PUT") {
+        const orderRes = await Order.findByIdAndUpdate(id, req.body, {
+            new: true,
+        }).populate({
+            path: "customer",
+            select: "fullName _id",
+            model: User,
+        })
+        res.status(200).json(orderRes);
+    } 
+    
+    else {
         res.status(405).json({ message: "Method not allowed" });
     }
 };
