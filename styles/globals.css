@@ -12,60 +12,76 @@ body {
 }
 
 .btn-primary {
-    @apply bg-primary rounded-full px-[25px] py-[8px] cursor-pointer hover:opacity-70 transition-all
+    @apply bg-primary rounded-full px-[25px] py-[8px] cursor-pointer hover:opacity-70 transition-all;
 }
 
 .btn-secondary {
-    @apply bg-secondray text-white rounded-full px-[25px] py-[8px] cursor-pointer hover:opacity-70 transition-all
+    @apply bg-secondray text-white rounded-full px-[25px] py-[8px] cursor-pointer hover:opacity-70 transition-all;
 }
 
 .btn {
-    @apply bg-secondray text-white rounded-full px-[12px] py-[4px] cursor-pointer hover:opacity-70 transition-all
+    @apply bg-secondray text-white rounded-full px-[12px] py-[4px] cursor-pointer hover:opacity-70 transition-all;
 }
 
 .btn-success {
-    @apply bg-success text-white rounded-full px-3 py-1 md:px-4 md:py-2 cursor-pointer hover:opacity-70 transition-all disabled:opacity-50 disabled:cursor-not-allowed
+    @apply bg-success text-white rounded-full px-3 py-1 md:px-4 md:py-2 cursor-pointer hover:opacity-70 transition-all disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
 .slick-dots {
-    @apply !flex justify-start w-full short:justify-end; 
+    @apply !flex justify-start w-full short:justify-end;
 }
-
 
 .slick-dots li {
-    @apply !m-0
+    @apply !m-0;
 }
-.slick-dots li button:before{
-    @apply opacity-70 text-[14px] text-white mt-10 short:-mt-10
+.slick-dots li button:before {
+    @apply opacity-70 text-[14px] text-white mt-10 short:-mt-10;
 }
 
-.slick-dots .slick-active button:before{
-    @apply rounded-full !text-primary text-[18px]
+.slick-dots .slick-active button:before {
+    @apply rounded-full !text-primary text-[18px];
 }
 
 .table_wrapper {
-    @apply w-full max-h-[500px] overflow-auto whitespace-nowrap 
+    @apply w-full max-h-[500px] overflow-auto whitespace-nowrap;
 }
-
 
 /* Firefox */
 .table_wrapper {
     scrollbar-width: thin;
-    scrollbar-color: #000000 #DFE9EB;
-  }
-  
-  /* Chrome, Edge and Safari */
-  .table_wrapper ::-webkit-scrollbar {
+    scrollbar-color: #000000 #dfe9eb;
+}
+
+/* Chrome, Edge and Safari */
+.table_wrapper ::-webkit-scrollbar {
     height: 10px;
     width: 10px;
-  }
-  .table_wrapper ::-webkit-scrollbar-track {
+}
+.table_wrapper ::-webkit-scrollbar-track {
     border-radius: 5px;
-    background-color: #DFE9EB;
-  }
-  
-  .table_wrapper ::-webkit-scrollbar-thumb {
+    background-color: #dfe9eb;
+}
+
+.table_wrapper ::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: #060606;
-  }
-  
+}
+
+.scroll-bar {
+    scrollbar-width: thin;
+    scrollbar-color: #000000 #dfe9eb;
+}
+
+.scroll-bar::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+.scroll-bar::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #dfe9eb;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #060606;
+}
