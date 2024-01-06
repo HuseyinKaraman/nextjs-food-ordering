@@ -103,8 +103,7 @@ const Order = () => {
                                             {order.total + order.total * 0.1}
                                         </td>
                                         <td
-                                            class
-                                            Name="py-3 md:py-4 px-1 md:px-6 font-medium whitespace-nowrap hover:text-white"
+                                            className="py-3 md:py-4 px-1 md:px-6 font-medium whitespace-nowrap hover:text-white"
                                         >
                                             {paymentMethod[order.paymentMethod]}
                                         </td>

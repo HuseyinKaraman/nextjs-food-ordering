@@ -19,7 +19,6 @@ const Account = ({user}) => {
                     pauseOnHover: true,
                 });
             }
-            actions.resetForm();
         } catch (error) {
             const message = error.response.data ? error.response.data.message : "Something went wrong";
             toast.error(message, {
