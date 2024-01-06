@@ -5,14 +5,16 @@ import MenuItem from "./MenuItem";
 const MenuWrapper = ({ categoryList, productList }) => {
     const [active, setActive] = useState(0);
     const [filter, setFilter] = useState(productList.filter((product) => product.categoryId === categoryList[0]._id));
+    const [productLimit, setProductLimit] = useState(1);
 
     const handleFilter = (category, index) => {
         setFilter(productList.filter((product) => product.categoryId === category._id));
         setActive(index);
+        setProductLimit(1);
     };
 
     return (
-        <div className="container py-10 mx-auto mb-16">
+        <div className="container py-10 mx-auto mb-10">
             <Title addClass={"text-center text-[40px]"}>Our Menu</Title>
             <div className="flex justify-center gap-x-6 my-10">
                 {categoryList &&
@@ -27,7 +29,13 @@ const MenuWrapper = ({ categoryList, productList }) => {
                     ))}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-x-2 gap-y-4 md:gap-x-4 min-h-[420px]">
-                {filter && filter.map((product) => <MenuItem key={product._id} product={product} />)}
+                {filter.length > 0 &&
+                    filter.slice(0, productLimit).map((product) => <MenuItem key={product._id} product={product} />)}
+            </div>
+            <div className="flex items-center justify-center mt-12">
+                <button className="btn-primary" onClick={() => setProductLimit(productLimit + 1)} disabled={filter.length <= productLimit}>
+                    View More
+                </button>
             </div>
         </div>
     );

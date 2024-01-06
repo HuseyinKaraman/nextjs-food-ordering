@@ -15,7 +15,7 @@ const Header = () => {
 
     return (
         <div
-            className={`h-[5.5rem] text-white  relative z-20 ${
+            className={`h-[5.5rem] text-white relative z-20 ${
                 router.asPath === "/" ? "bg-transparent" : "bg-secondray"
             }`}
         >
@@ -30,16 +30,36 @@ const Header = () => {
                     }`}
                 >
                     <div className="flex gap-x-2 sm:flex-row flex-col items-center">
-                        <Link href="/" className="px-[5px] py-[14px] hover:text-primary cursor-pointer">
+                        <Link
+                            href="/"
+                            className={`px-[5px] py-[14px] hover:text-primary cursor-pointer ${
+                                router.asPath === "/" && "text-primary"
+                            }`}
+                        >
                             HOME
                         </Link>
-                        <Link href="/menu" className="px-[5px] py-[14px] hover:text-primary cursor-pointer">
+                        <Link
+                            href="/menu"
+                            className={`px-[5px] py-[14px] hover:text-primary cursor-pointer ${
+                                router.asPath === "/menu" && "text-primary"
+                            }`}
+                        >
                             MENU
                         </Link>
-                        <Link href="/about" className="px-[5px] py-[14px] hover:text-primary cursor-pointer">
+                        <Link
+                            href="/about"
+                            className={`px-[5px] py-[14px] hover:text-primary cursor-pointer ${
+                                router.asPath === "/about" && "text-primary"
+                            }`}
+                        >
                             ABOUT
                         </Link>
-                        <Link href="/reservation" className="px-[5px] py-[14px] hover:text-primary cursor-pointer">
+                        <Link
+                            href="/reservation"
+                            className={`px-[5px] py-[14px] hover:text-primary cursor-pointer ${
+                                router.asPath === "/reservation" && "text-primary"
+                            }`}
+                        >
                             BOOK TABLE
                         </Link>
                     </div>
@@ -47,16 +67,22 @@ const Header = () => {
                 <div className="flex gap-x-3 items-center">
                     <Link
                         href="/auth/login"
-                        className="px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all"
+                        className={`px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all ${
+                            (router.asPath === "/auth/login" || router.asPath.includes("/profile")) && "text-primary"
+                        }`}
                     >
                         <FaUserAlt />
                     </Link>
                     <Link
                         href="/cart"
-                        className="relative px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all"
+                        className={`relative px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all ${
+                            router.asPath === "/cart" && "text-primary"
+                        }`}
                     >
                         <FaShoppingCart />
-                        <span className="absolute -right-1 -top-0 px-[3px] text-center text-xs font-semibold text-black rounded-full bg-primary">{cart.quantity > 0 ? cart.quantity : null}</span>
+                        <span className="absolute -right-1 -top-0 px-[3px] text-center text-xs font-semibold text-black rounded-full bg-primary">
+                            {cart.quantity > 0 ? cart.quantity : null}
+                        </span>
                     </Link>
                     <button
                         className="px-[5px] py-[14px] hover:text-primary cursor-pointer transition-all"
