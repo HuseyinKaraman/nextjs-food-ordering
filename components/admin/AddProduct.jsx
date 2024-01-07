@@ -304,7 +304,7 @@ const AddProduct = ({ setIsProductModal, categories, getProducts }) => {
                                         </div>
                                         <button
                                             className="btn !w-20 !bg-primary !text-center ml-auto"
-                                            type="submit"
+                                            type="button"
                                             onClick={handleExtra}
                                         >
                                             Add
