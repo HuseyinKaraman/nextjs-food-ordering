@@ -13,7 +13,7 @@ const AddProduct = ({ setIsProductModal, categories, getProducts }) => {
     const [file, setFile] = useState();
     const [imageSrc, setImageSrc] = useState(false);
     const [extraOptions, setExtraOptions] = useState([]);
-    const [extra, setExtra] = useState({ text: "", price: 0, error: null });
+    const [extra, setExtra] = useState({ text: "", price: 0, error: "" });
     const [prices, setPrices] = useState(multiChoice.includes(categories[0].name) ? [null, null, null] : [null]);
 
     const onSubmit = async (values, actions) => {
@@ -269,6 +269,9 @@ const AddProduct = ({ setIsProductModal, categories, getProducts }) => {
                                         <span>Extra</span>
                                         {extra?.error && extra?.error.includes("both") && (
                                             <span className="text-xs mt-2 ml-5 text-danger">All field is required</span>
+                                        )}
+                                        {errors.extraOptions && (
+                                            <span className="text-xs mt-2 ml-5 text-danger">Extras is required</span>
                                         )}
                                     </div>
                                     <div className="flex gap-2 items-start">
