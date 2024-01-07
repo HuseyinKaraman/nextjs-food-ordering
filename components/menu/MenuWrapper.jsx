@@ -16,7 +16,7 @@ const MenuWrapper = ({ categoryList, productList }) => {
     return (
         <div className="container py-10 mx-auto mb-10">
             <Title addClass={"text-center text-[40px]"}>Our Menu</Title>
-            <div className="flex justify-center gap-x-6 my-10">
+            <div className="flex justify-around flex-wrap md:flex-nowrap gap-2 my-10">
                 {categoryList &&
                     categoryList.map((category, index) => (
                         <button
