@@ -113,7 +113,7 @@ const Login = () => {
     );
 };
 
-export async function getServerSideProps(ctx) {
+export const getServerSideProps = async (ctx) =>  {
     const session = await getSession({ req:ctx.req });
 
     if (session) {
