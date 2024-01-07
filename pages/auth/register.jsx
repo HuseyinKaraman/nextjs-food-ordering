@@ -1,4 +1,3 @@
-import React from "react";
 import Title from "../../components/ui/Title";
 import Input from "../../components/form/Input";
 import { useFormik } from "formik";

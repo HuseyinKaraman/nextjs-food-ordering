@@ -1,4 +1,4 @@
-import React from "react";
+
 import OutsideClickHandler from "react-outside-click-handler";
 
 const PopConfirm = ({ setConfirm, sendRequest, question, addClass }) => {

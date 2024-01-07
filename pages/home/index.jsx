@@ -1,4 +1,3 @@
-import React from "react";
 import Carousel from "../../components/Carousel";
 import Campaings from "../../components/Campaings";
 import MenuWrapper from "../../components/menu/MenuWrapper";

@@ -1,5 +1,4 @@
 import Image from "next/legacy/image";
-import React from "react";
 import Slider from "react-slick";
 import Title from "./ui/Title";
 import { useRouter } from "next/router";

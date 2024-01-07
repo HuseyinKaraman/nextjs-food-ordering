@@ -1,4 +1,4 @@
-import React from "react";
+
 import CustomerItem from "./CustomerItem";
 import Title from "../ui/Title";
 import Slider from "react-slick";
