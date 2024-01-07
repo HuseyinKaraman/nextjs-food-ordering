@@ -270,7 +270,7 @@ const AddProduct = ({ setIsProductModal, categories, getProducts }) => {
                                         {extra?.error && extra?.error.includes("both") && (
                                             <span className="text-xs mt-2 ml-5 text-danger">All field is required</span>
                                         )}
-                                        {errors.extraOptions && (
+                                        {errors?.extraOptions && (
                                             <span className="text-xs mt-2 ml-5 text-danger">Extras is required</span>
                                         )}
                                     </div>
