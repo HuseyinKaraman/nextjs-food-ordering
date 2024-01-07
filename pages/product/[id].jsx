@@ -119,19 +119,3 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 export default Index;
-
-/**
- * div
-                                    className={`relative w-14 h-14 cursor-pointer ${
-                                        size === 2
-                                            ? "outline-[5px] outline outline-primary outline-offset-[4px] rounded-full"
-                                            : ""
-                                    }`}
-                                    onClick={() => handleSize(2)}
-                                >
-                                    <Image src="/images/size.png" alt="image" layout="fill" />
-                                    <span className="bg-primary absolute -right-2 top-1 text-xs px-[3px] rounded-r-md">
-                                        Large
-                                    </span>
-                                </div>
- */
