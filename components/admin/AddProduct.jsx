@@ -98,16 +98,16 @@ const AddProduct = ({ setIsProductModal, categories, getProducts }) => {
     };
 
     const handleExtra = () => {
-        if (extra.text && extra.price) {
+        if (extra?.text && extra?.price) {
             setExtraOptions((prev) => [...prev, { text: extra.text, price: extra.price }]);
             setFieldValue("extraOptions", [...values.extraOptions, { text: extra.text, price: extra.price }]);
-            setExtra({ text: "", price: 0 });
+            setExtra({ text: "", price: 0 ,error: null});
         } else {
-            if (extra.text === "" && extra.price < 0) {
+            if (extra?.text === "" && extra?.price <= 0) {
                 setExtra({ ...extra, error: "both" });
-            } else if (extra.text === "") {
+            } else if (extra?.text === "") {
                 setExtra({ ...extra, error: "text" });
-            } else if (extra.price < 0) {
+            } else if (extra?.price <= 0) {
                 setExtra({ ...extra, error: "price" });
             }
         }
@@ -267,11 +267,8 @@ const AddProduct = ({ setIsProductModal, categories, getProducts }) => {
                                 <div className="flex flex-col text-sm mb-5">
                                     <div className="font-semibold mb-2">
                                         <span>Extra</span>
-                                        {extra.error === "both" && (
+                                        {extra?.error && extra?.error.includes("both") && (
                                             <span className="text-xs mt-2 ml-5 text-danger">All field is required</span>
-                                        )}
-                                        {errors?.extraOptions && (
-                                            <span className="text-xs mt-2 ml-5 text-danger">{errors.extraOptions}</span>
                                         )}
                                     </div>
                                     <div className="flex gap-2 items-start">
@@ -283,8 +280,9 @@ const AddProduct = ({ setIsProductModal, categories, getProducts }) => {
                                                     setExtra({ ...extra, [e.target.name]: e.target.value })
                                                 }
                                                 className="p-1 border-b-2 border-black outline-none"
+                                                value={extra?.text}
                                             />
-                                            {extra.error === "text" && (
+                                            {extra?.error && extra?.error.includes("text") && (
                                                 <span className="text-xs mt-2 text-danger">text is required</span>
                                             )}
                                         </div>
@@ -297,8 +295,9 @@ const AddProduct = ({ setIsProductModal, categories, getProducts }) => {
                                                     setExtra({ ...extra, [e.target.name]: e.target.value })
                                                 }
                                                 className="p-1 border-b-2 border-black outline-none"
+                                                value={extra?.price}
                                             />
-                                            {extra.error === "price" && (
+                                            {extra?.error && extra?.error.includes("price") && (
                                                 <span className="text-xs mt-2 text-danger">price greatern than 0</span>
                                             )}
                                         </div>
