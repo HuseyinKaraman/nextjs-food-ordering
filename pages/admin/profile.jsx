@@ -69,8 +69,7 @@ const Profile = ({ getCategories }) => {
                     <h3 className="text-2xl font-bold text-center mt-1">Admin</h3>
                 </div>
                 <ul className="flex flex-row lg:flex-col border-t lg:border-none justify-evenly font-semibold">
-                    <li
-                        className={`hover:bg-primary hover:text-white cursor-pointer  p-1 py-3 lg:p-3 border-r lg:border-y lg:border-r-0  w-full ${
+                    <li className={`hover:bg-primary hover:text-white cursor-pointer  p-1 py-3 lg:p-3 border-r lg:border-y lg:border-r-0  w-full ${
                             tabs === 0 && "bg-primary text-white"
                         }`}
                         onClick={() => setTabs(0)}
@@ -78,8 +77,7 @@ const Profile = ({ getCategories }) => {
                         <i className="fa fa-cutlery inline-block mr-2 text-xl md:text-2xl"> </i>
                         <span>Products</span>
                     </li>
-                    <li
-                        className={`hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 border-r lg:border-b lg:border-r-0  w-full ${
+                    <li className={`hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 border-r lg:border-b lg:border-r-0  w-full ${
                             tabs === 1 && "bg-primary text-white"
                         }`}
                         onClick={() => setTabs(1)}
@@ -87,8 +85,7 @@ const Profile = ({ getCategories }) => {
                         <i className="fa fa-motorcycle inline-block mr-2 text-xl md:text-2xl"></i>
                         <span>Orders</span>
                     </li>
-                    <li
-                        className={`hover:bg-primary hover:text-white cursor-pointer  p-1 py-3 lg:p-3 border-r lg:border-b lg:border-r-0  w-full ${
+                    <li className={`hover:bg-primary hover:text-white cursor-pointer  p-1 py-3 lg:p-3 border-r lg:border-b lg:border-r-0  w-full ${
                             tabs === 2 && "bg-primary text-white"
                         }`}
                         onClick={() => setTabs(2)}
@@ -96,8 +93,7 @@ const Profile = ({ getCategories }) => {
                         <i className="fa fa-list inline-block mr-2 text-xl md:text-2xl"> </i>
                         <span>Categories</span>
                     </li>
-                    <li
-                        className={`hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 border-r lg:border-b lg:border-r-0  w-full ${
+                    <li className={`hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 border-r lg:border-b lg:border-r-0  w-full ${
                             tabs === 3 && "bg-primary text-white"
                         }`}
                         onClick={() => setTabs(3)}
@@ -105,8 +101,7 @@ const Profile = ({ getCategories }) => {
                         <i className="fa fa-window-maximize block md:inline-block mr-2 text-xl md:text-2xl"></i>
                         <span>Footer</span>
                     </li>
-                    <li
-                        className="hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 w-full"
+                    <li className="hover:bg-primary hover:text-white cursor-pointer p-1 py-3 lg:p-3 w-full"
                         onClick={() => setConfirm(true)}
                     >
                         <i className="fa fa-sign-out block md:inline-block mr-2 text-xl md:text-2xl"></i>

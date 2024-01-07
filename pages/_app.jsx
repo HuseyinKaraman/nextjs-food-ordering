@@ -14,15 +14,9 @@ import { Provider } from "react-redux";
 import { SessionProvider } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 
-
-
-
-
-Router.events.on("routeChangeStart", () =>NProgress.start());
+Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
-
-
 
 // ** const router = useRouter(); admin layout eklersek bunu kullanabiliriz!
 
@@ -31,8 +25,10 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
         <SessionProvider session={session}>
             <Provider store={store}>
                 <MainLayout>
-                    <ToastContainer />
-                    <Component {...pageProps} />
+                    <div className="pt-[88px]">
+                        <ToastContainer />
+                        <Component {...pageProps} />
+                    </div>
                 </MainLayout>
             </Provider>
         </SessionProvider>

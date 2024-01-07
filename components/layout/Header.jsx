@@ -7,20 +7,19 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
-const Header = () => {
-    const cart = useSelector((state) => state.cart);
+const Header = ({ isMenuModal, setIsMenuModal }) => {
+    const cart = useSelector((state) => state.cart);    
     const [isSearchModal, setIsSearchModal] = useState(false);
-    const [isMenuModal, setIsMenuModal] = useState(false);
     const router = useRouter();
 
     return (
         <div
             className={`h-[5.5rem] text-white relative z-20 ${
-                router.asPath === "/" ? "bg-transparent" : "bg-secondray"
+                router.asPath === "/" ? "bg-transparent" : "bg-secondray !fixed w-full top-0"
             }`}
         >
-            <div className="sm:container max-sm:mx-4 flex items-center !justify-between mx-auto h-full">
-                <div>
+            <div className="sm:container px-2 flex items-center !justify-between mx-auto h-full">
+                <div className="mr-2">
                     <Logo />
                 </div>
                 {/** //! Seo için nav yapıldı  */}
@@ -35,6 +34,7 @@ const Header = () => {
                             className={`px-[5px] py-[14px] hover:text-primary cursor-pointer ${
                                 router.asPath === "/" && "text-primary"
                             }`}
+                            onClick={() => setIsMenuModal(false)}
                         >
                             HOME
                         </Link>
@@ -43,6 +43,7 @@ const Header = () => {
                             className={`px-[5px] py-[14px] hover:text-primary cursor-pointer ${
                                 router.asPath === "/menu" && "text-primary"
                             }`}
+                            onClick={() => setIsMenuModal(false)}
                         >
                             MENU
                         </Link>
@@ -51,6 +52,7 @@ const Header = () => {
                             className={`px-[5px] py-[14px] hover:text-primary cursor-pointer ${
                                 router.asPath === "/about" && "text-primary"
                             }`}
+                            onClick={() => setIsMenuModal(false)}
                         >
                             ABOUT
                         </Link>
@@ -59,6 +61,7 @@ const Header = () => {
                             className={`px-[5px] py-[14px] hover:text-primary cursor-pointer ${
                                 router.asPath === "/reservation" && "text-primary"
                             }`}
+                            onClick={() => setIsMenuModal(false)}
                         >
                             BOOK TABLE
                         </Link>
@@ -80,7 +83,7 @@ const Header = () => {
                         }`}
                     >
                         <FaShoppingCart />
-                        <span className="absolute -right-1 -top-0 px-[3px] text-center text-xs font-semibold text-black rounded-full bg-primary">
+                        <span className="absolute -right-[8px] top-[3px] px-[5px] text-center text-[10px] font-semibold text-black rounded-full bg-primary">
                             {cart.quantity > 0 ? cart.quantity : null}
                         </span>
                     </Link>

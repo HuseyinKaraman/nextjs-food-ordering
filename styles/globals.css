@@ -32,17 +32,17 @@ body {
 }
 
 .slick-dots li {
-    @apply !m-0;
+    @apply !m-0 !mr-[1.5px];
 }
 .slick-dots li button:before {
     @apply opacity-70 text-[14px] text-white mt-10 short:-mt-10;
 }
 
 .slick-dots .slick-active button:before {
-    @apply rounded-full !text-primary text-[18px];
+    @apply rounded-full !text-primary text-[18px] scale-125;
 }
 
-.table_wrapper {
+.table_wrapper { 
     @apply w-full max-h-[500px] overflow-auto whitespace-nowrap;
 }
 
